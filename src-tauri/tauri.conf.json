@@ -14,8 +14,13 @@
     "windows": [
       {
         "title": "Sena Clicker",
-        "width": 800,
-        "height": 600
+        "width": 480,
+        "height": 270,
+        "resizable":false,
+        "center":true,
+        "alwaysOnTop":true,
+        "fullscreen": false,
+        "maximizable":false
       }
     ],
     "security": {
