@@ -9,10 +9,23 @@
   </head>
   <body>
     <div class="w-full h-screen bg-cover bg-center opacity-100" style="background-image: url('/src/img/TITLE_BASE_PROLOGUE.png')">
+      <h2 class="text-base text-center pt-2 text-rose-300">按键选择</h2>
       <div class="btnBox">
-        <div class="px-8 opacity-100"><button class="btnSelected btnBase">Left/左键</button></div>
-        <div class="px-8 opacity-100"><button class="btnUnSelected btnBase">Right/右键</button></div>
+        <div class="px-6 opacity-100"><button class="btnSelected btnBase">Left/左键</button></div>
+        <div class="px-6 opacity-100"><button class="btnUnSelected btnBase">Right/右键</button></div>
       </div>
-    </div>
+      <h2 class="text-base text-center pt-4 text-rose-300">时间间隔(ms)</h2>
+      <div class="inputArea"><input type="number" class="input"></div>
+      <h2 class="text-base text-center pt-4 text-rose-300">热键设置</h2>
+      <div class="inputArea"><input type="text" inputmode="none" class="inputHotKey"></div>
+      <div class="start">
+         <div class="px-6 opacity-100"><button class="btnStart btnBase">开始</button></div>
+      </div>
+      <div class="MemoryBox">
+        <div class="px-4 opacity-100"><button class="btnSave btnBase">保存设置</button></div>
+        <div class="px-4 opacity-100"><button class="btnLoad btnBase">导入设置</button></div>
+        <div class="px-4 opacity-100"><button class="btnOut btnBase">导出设置</button></div>
+      </div>
+      </div>
   </body>
 </html>

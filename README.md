@@ -1,6 +1,6 @@
-# Tauri + Vanilla TS
+# Mouse AutoClicker ---learning Project
 
-This template should help get you started developing with Tauri in vanilla HTML, CSS and Typescript.
+学习性质的项目,小玩具,功能较少。
 
 ## Recommended IDE Setup
 
