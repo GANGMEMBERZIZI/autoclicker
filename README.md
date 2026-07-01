@@ -4,4 +4,4 @@
 
 ## 实现的方式
 
-- [TypeScript]+[Rust]+[Vite]+[Tauri]
+- TypeScript+Rust+Vite+Tauri+tailwindCSS
