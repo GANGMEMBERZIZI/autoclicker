@@ -1,6 +1,14 @@
-//import './styles.css';
+//import './styles.css';]
 import { invoke } from '@tauri-apps/api/core';
+import { open,save } from '@tauri-apps/plugin-dialog';
+import { writeTextFile, readTextFile } from '@tauri-apps/plugin-fs';
 import {register,unregisterAll} from '@tauri-apps/plugin-global-shortcut';
+import { parse } from 'dotenv';
+interface Setting{
+  interval:number,
+  mode:String,
+  currentHotKey:String
+}
 const input=document.querySelector(".input") as HTMLInputElement;
 let currentHotKey='F1';
 let final='';
@@ -17,6 +25,66 @@ function toggleClicking(){
   const btn=document.querySelector(".btnStart") as HTMLButtonElement;
   if(btn) btn.innerText=isClicking?"停止":"开始";
   invoke("toggle_clicking",{isRunning:isClicking});
+}
+async function exportSetting(){
+  try{
+    let currentSetting:Setting={
+      interval:Interval,
+      mode:Mod,
+      currentHotKey:currentHotKey
+    };
+    const filePath=await save({
+      title:"保存当前配置?",
+      defaultPath:"SenaConfig.json",
+      filters:[{name:"Sena",extensions:['json']}]
+    });
+    if(filePath){
+      await writeTextFile(filePath,JSON.stringify(currentSetting,null,2));
+    }
+  }
+  catch(error){
+    console.log(error);
+  }
+}
+async function importSetting() {
+  try{
+    const filePath=await open({
+      title:"导入你选择的配置",
+      filters:[{name:"Sena",extensions:["json"]}]
+    });
+    if(filePath){
+      let fileContent=await readTextFile(filePath as string);
+      let parseConfig=JSON.parse(fileContent);
+      if(parseConfig.interval){
+        Interval = parseConfig.interval;            
+        input.value = String(Interval);
+      }
+      if(parseConfig.mode){
+        Mod = parseConfig.mode;
+        const buttons = document.querySelectorAll<HTMLElement>(".btnBox .btnBase");
+        buttons.forEach(btn => {
+          if (btn.innerText.includes('Left') && Mod === 'left') {
+            btn.className = "btnSelected btnBase";
+          } else if (btn.innerText.includes('Right') && Mod === 'right') {
+            btn.className = "btnSelected btnBase";
+          } else {
+            btn.className = "btnUnSelected btnBase";
+          }
+        });
+      }
+      if(parseConfig.currentHotKey&&parseConfig.currentHotKey!==HotKey.value){
+        currentHotKey = parseConfig.currentHotKey;
+        if (HotKey) {
+          HotKey.value = currentHotKey.replace("CommandOrControl", "Ctrl");
+        }
+        await registerDefault();
+      }
+      await syncSettingsToRust();
+    }
+  }
+  catch(error){
+    console.error(error);
+  }
 }
 async function syncSettingsToRust() {
   try{
@@ -118,6 +186,18 @@ async function registerDefault() {
     console.log("出现了default错误"+error);
   }
 }
+const Load=document.querySelector(".btnLoad") as HTMLButtonElement;
+const out=document.querySelector(".btnOut") as HTMLButtonElement;
+if(!Load||!out){
+  console.log("不存在Save load out");
+}
+Load.addEventListener("click",async()=>{
+  await importSetting();
+
+});
+out.addEventListener("click",async()=>{
+  await exportSetting();
+}); 
 
   
 

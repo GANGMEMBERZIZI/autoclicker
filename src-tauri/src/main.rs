@@ -4,6 +4,3 @@
 fn main() {
     autoclicker_lib::run()
 }
-
-
-
