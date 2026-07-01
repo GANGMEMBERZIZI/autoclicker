@@ -2,6 +2,6 @@
 
 学习性质的项目,小玩具,功能较少。
 
-## Recommended IDE Setup
+## 实现的方式
 
-- [VS Code](https://code.visualstudio.com/) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
+- [TypeScript]+[Rust]+[Vite]+[Tauri]
