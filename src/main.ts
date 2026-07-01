@@ -3,7 +3,6 @@ import { invoke } from '@tauri-apps/api/core';
 import { open,save } from '@tauri-apps/plugin-dialog';
 import { writeTextFile, readTextFile } from '@tauri-apps/plugin-fs';
 import {register,unregisterAll} from '@tauri-apps/plugin-global-shortcut';
-import { parse } from 'dotenv';
 interface Setting{
   interval:number,
   mode:String,
