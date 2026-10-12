@@ -1,4 +1,4 @@
-# Mouse AutoClicker ---learning Project
+# Mouse AutoClicker 
 
 ## 实现的方式
 
